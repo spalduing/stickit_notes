@@ -25,13 +25,6 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
 
-function* noteCount() {
-  let count = 1;
-  while (true) {
-    yield count++;
-  }
-}
-
 let count = Number(window.localStorage.getItem("count"));
 if (!count) {
   window.localStorage.setItem("count", "0");
@@ -79,6 +72,8 @@ function createNoteFromInput(e) {
   document.getElementById("new-note-title-input").value = "";
   document.getElementById("new-note-body-input").value = "";
 
+  createNote(noteTitle, noteBody);
+
   count += 1;
   window.localStorage.setItem("count", count);
 
@@ -88,24 +83,23 @@ function createNoteFromInput(e) {
 
   window.localStorage.setItem(noteTitle, noteBody);
 
-  createNote(noteTitle, noteBody);
-
 
 }
 
 function removeItem(e) {
-  if (e.target.classList.contains("delete")) {
+  if (e.currentTarget.classList.contains("delete")) {
     if (confirm("Are you sure you wanna delete this note?")) {
       let liTag = e.target.parentElement.parentElement;
       let ulTag = document.getElementById("notes");
       ulTag.removeChild(liTag);
-      count -= 1;
+      //count -= 1;
+      window.localStorage.setItem("count", count);
+      window.localStorage.removeItem(e.currentTarget.parentElement.id);
     }
   }
 
-  window.localStorage.setItem("count", count);
-  window.localStorage.removeItem(e.target.previusElementSibling.innerText);
-  if (count < 1) {
+
+  if (document.querySelector('a:last-child') == null ) {
     document.getElementById("no-notes").className = "";
   }
 }
