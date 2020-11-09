@@ -92,7 +92,7 @@ function removeItem(e) {
       let liTag = e.target.parentElement.parentElement;
       let ulTag = document.getElementById("notes");
       ulTag.removeChild(liTag);
-      //count -= 1;
+      count -= 1;
       window.localStorage.setItem("count", count);
       window.localStorage.removeItem(e.currentTarget.parentElement.id);
     }
