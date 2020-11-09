@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cookies</title>
+<script>
+    function clicked(){
+        console.log("Button Clicked");
+        // let key = document.myForm.name.value;
+        // let value = document.myForm.name2.value;
+
+        // localStorage.setItem(key, value);
+
+        // localStorage.removeItem("Miguelangel");
+
+        // console.log(localStorage.getItem("Juan Jose"));
+
+        // localStorage.clear();
+
+        // document.cookie = "username=Miguelangel;";
+
+        // let expiration = new Date();
+        // expiration.setMonth(expiration.getMonth() + 1); // it expires when the sesion ends
+
+        // document.cookie = "username=Miguelangel; expires="+expiration.toUTCString() + ";"; // it expires a month later from now.
+
+        let expiration = new Date();
+        expiration.setMonth(expiration.getMonth() - 1); // you set the expires to a previus date then the cookie just got deleted
+
+        document.cookie = "username=Miguelangel; expires="+expiration.toUTCString() + ";"; // it expires a month later from now.
+
+    }
+</script>
+</head>
+<body>
+    <form name="myForm">
+        Enter key info : <input  type="text" name="name" />
+        <input type="button" value="submit" onclick="clicked()" /> 
+        Enter value info : <input  type="text" name="name2" />
+        <input type="button" value="submit" onclick="clicked()" /> 
+        
+    </form>
+</body>
+</html>

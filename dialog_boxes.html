@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dialog boxes</title>
+</head>
+<body>
+ <script>
+     function  demo(){
+         alert("Your computer is affected by Virus!");
+         const retVal = confirm("If you want to destroy them, you must say me  your age.\nWe have a deal?");
+
+         if(retVal){
+             alert("Deal!");
+         }else{
+             alert("Lame!");
+             return
+          }
+        const inputVal = prompt("Enter your age: ", "25");
+        document.write("You entered:    " + inputVal + "\nYour computer is safe now :)");
+     }
+ </script>
+ <input type="button" onclick="demo()" value="Click me" />
+</body>
+</html>
