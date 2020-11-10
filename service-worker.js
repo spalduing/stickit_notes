@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["contract.png","d7a1e9676547714cbaa366997183e136"],["cookies.html","b5d2facfb0dc20b3c19c0b04ba8c3c8e"],["dialog_boxes.html","b14d69a419bdc20104745365f8ce7e73"],["index.html","a33d5b1a8f7fe6c0b1bd03c8be61c93b"],["manifest.webmanifest","043ba7b8da3201a73053b709e19b63de"],["myscripts.js","46661c2208b30fa3161d4142ce540b27"],["page_redirection.html","3f7e23f7a9ded283cd150e29febf71d5"],["style.css","e2db82e750a06689e9d4cb2b512673f1"]];
+var precacheConfig = [["contract.png","d7a1e9676547714cbaa366997183e136"],["cookies.html","b5d2facfb0dc20b3c19c0b04ba8c3c8e"],["dialog_boxes.html","b14d69a419bdc20104745365f8ce7e73"],["index.html","2d4218ccd2fe9b5ea5a70240ef17de16"],["manifest.webmanifest","043ba7b8da3201a73053b709e19b63de"],["myscripts.js","b549301832781ce6493c0333d15f6298"],["page_redirection.html","3f7e23f7a9ded283cd150e29febf71d5"],["style.css","72e7f8995ec2126cd75904aa31f4f06d"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 

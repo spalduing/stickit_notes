@@ -20,10 +20,19 @@
 //   console.log(e.shiftKey);
 // });
 
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   // register service worker
-  navigator.serviceWorker.register('service-worker.js');
+  navigator.serviceWorker.register("service-worker.js");
 }
+
+function* noteCount() {
+  let count = 1;
+  while (true) {
+    yield count++;
+  }
+}
+
+let counter = noteCount();
 
 let count = Number(window.localStorage.getItem("count"));
 if (!count) {
@@ -63,43 +72,49 @@ function createNote(noteTitle, noteBody) {
   }
 }
 
+function theresASpace(e) {
+  let key = e.keyCode;
+  if (key == 32) {
+    alert("A title must be composed of a single word");
+    document.getElementById("new-note-title-input").value = "";
+    return;
+  }
+}
+
 function createNoteFromInput(e) {
   e.preventDefault();
-
   let noteTitle = document.getElementById("new-note-title-input").value;
   let noteBody = document.getElementById("new-note-body-input").value;
 
   document.getElementById("new-note-title-input").value = "";
   document.getElementById("new-note-body-input").value = "";
 
-  createNote(noteTitle, noteBody);
-
   count += 1;
   window.localStorage.setItem("count", count);
 
-  while (window.localStorage.getItem(noteTitle)) {
-    noteTitle += " - 1";
+  if (window.localStorage.getItem(noteTitle)) {
+    noteTitle = `${noteTitle}(${counter.next().value})`;
   }
 
   window.localStorage.setItem(noteTitle, noteBody);
 
-
+  createNote(noteTitle, noteBody);
 }
 
 function removeItem(e) {
-  if (e.currentTarget.classList.contains("delete")) {
+  if (e.target.classList.contains("delete")) {
     if (confirm("Are you sure you wanna delete this note?")) {
       let liTag = e.target.parentElement.parentElement;
       let ulTag = document.getElementById("notes");
       ulTag.removeChild(liTag);
       count -= 1;
       window.localStorage.setItem("count", count);
-      window.localStorage.removeItem(e.currentTarget.parentElement.id);
+      console.log(e.target.previousElementSibling.innerHTML);
+      window.localStorage.removeItem(e.target.previousElementSibling.innerHTML);
     }
   }
 
-
-  if (document.querySelector('a:last-child') == null ) {
+  if (count < 1) {
     document.getElementById("no-notes").className = "";
   }
 }
@@ -118,3 +133,7 @@ document
   .addEventListener("submit", createNoteFromInput, false);
 
 document.getElementById("notes").addEventListener("click", removeItem, false);
+
+document
+  .getElementById("new-note-title-input")
+  .addEventListener("keypress", theresASpace, false);
